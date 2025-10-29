@@ -120,7 +120,7 @@ class EmployeeManagementSystemTest {
             .allMatch(e -> e.getSalary() >= 80000);
         
         // Should be sorted by salary descending
-        assertThat(highEarners.getFirst().getSalary())
+        assertThat(highEarners.get(0).getSalary())
             .isGreaterThanOrEqualTo(highEarners.get(1).getSalary());
     }
     

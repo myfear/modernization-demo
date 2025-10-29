@@ -15,6 +15,7 @@ import com.example.employee.model.enums.PaymentMethod;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Locale;
 
 /**
  * Facade class for the Employee Management System.
@@ -64,11 +65,14 @@ public class EmployeeManagementSystem {
     }
     
     public String processValue(Object value) {
-        if (value instanceof String string) {
+        if (value instanceof String) {
+            String string = (String) value;
             return "String: " + string.toUpperCase();
-        } else if (value instanceof Integer integer) {
+        } else if (value instanceof Integer) {
+            Integer integer = (Integer) value;
             return "Number: " + (integer * 2);
-        } else if (value instanceof SimpleEmployee employee) {
+        } else if (value instanceof SimpleEmployee) {
+            SimpleEmployee employee = (SimpleEmployee) value;
             return "Employee: " + employee.getName();
         } else {
             return "Unknown type";
@@ -90,7 +94,7 @@ public class EmployeeManagementSystem {
         report.append("Total Employees: ").append(repository.findAll().size()).append("\n");
         report.append("Departments: Engineering, Sales, HR\n");
         report.append("Average Salary: $").append(
-            "%.2f".formatted(
+            String.format(Locale.US, "%.2f",
                 repository.findAll().stream()
                     .mapToDouble(Employee::getSalary)
                     .average()
@@ -104,7 +108,7 @@ public class EmployeeManagementSystem {
     public String generateEmailTemplate(String name, double amount) {
         return "Dear " + name + ",\n\n" +
                "We are pleased to inform you that your bonus of $" +
-            "%.2f".formatted(amount) + 
+             String.format(Locale.US, "%.2f", amount) +
                " has been approved.\n\n" +
                "Regards,\n" +
                "HR Department";
@@ -187,7 +191,7 @@ public class EmployeeManagementSystem {
      */
     public static class EmployeeUtils {
         public static String formatSalary(double salary) {
-            return "$" + "%.2f".formatted(salary);
+            return "$" + String.format(Locale.US, "%.2f", salary);
         }
     }
 }
