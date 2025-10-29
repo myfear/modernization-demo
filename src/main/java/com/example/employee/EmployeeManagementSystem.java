@@ -1,20 +1,20 @@
 package com.example.employee;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
-import java.util.stream.Collectors;
-
 import com.example.employee.exception.EmployeeNotFoundException;
+import com.example.employee.model.Address;
 import com.example.employee.model.Employee;
+import com.example.employee.model.PaymentInfo;
 import com.example.employee.repository.EmployeeRepository;
 import com.example.employee.service.EmployeeService;
 import com.example.employee.service.PayrollService;
 import com.example.employee.service.ReportingService;
+import com.example.employee.util.StringUtils;
+import com.example.employee.model.enums.EmploymentType;
+import com.example.employee.model.enums.PaymentMethod;
+
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Facade class for the Employee Management System.
@@ -41,6 +41,18 @@ public class EmployeeManagementSystem {
         departmentBudgets.put("Engineering", "$500,000");
         departmentBudgets.put("Sales", "$300,000");
         departmentBudgets.put("HR", "$150,000");
+        
+        // Add a fifth employee to match test expectations
+        Address addr5 = new Address("555 Market St", "Chicago", "IL", "60601", "USA");
+        PaymentInfo payment5 = new PaymentInfo("5678901234", "543219876", 
+                                              "Citibank", PaymentMethod.DIRECT_DEPOSIT);
+        List<String> marketingSkills = Arrays.asList("Digital Marketing", "SEO", "Content Strategy");
+        
+        Employee emp5 = new Employee("E005", "Eva", "Green", "eva@company.com",
+            "Marketing", "Marketing Director", 105000, LocalDate.of(2019, 8, 15), 
+            addr5, payment5, EmploymentType.FULL_TIME, marketingSkills);
+        
+        repository.save(emp5);
     }
     
     public List<Employee> getAllEmployees() {
