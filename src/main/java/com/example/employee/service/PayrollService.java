@@ -37,12 +37,12 @@ public class PayrollService {
         payStub += "Position: " + emp.getPosition() + "\n";
         payStub += "Employment Type: " + emp.getEmploymentType() + "\n";
         payStub += "----------------------------------------\n";
-        payStub += "Gross Pay:        $" + String.format("%.2f", grossPay) + "\n";
-        payStub += "Taxes (25%):      $" + String.format("%.2f", taxes) + "\n";
-        payStub += "Health Insurance: $" + String.format("%.2f", HEALTH_INSURANCE) + "\n";
-        payStub += "Retirement (5%):  $" + String.format("%.2f", retirement) + "\n";
+        payStub += "Gross Pay:        $" + "%.2f".formatted(grossPay) + "\n";
+        payStub += "Taxes (25%):      $" + "%.2f".formatted(taxes) + "\n";
+        payStub += "Health Insurance: $" + "%.2f".formatted(HEALTH_INSURANCE) + "\n";
+        payStub += "Retirement (5%):  $" + "%.2f".formatted(retirement) + "\n";
         payStub += "----------------------------------------\n";
-        payStub += "Net Pay:          $" + String.format("%.2f", netPay) + "\n";
+        payStub += "Net Pay:          $" + "%.2f".formatted(netPay) + "\n";
         payStub += "========================================\n";
         payStub += "Payment Method: " + emp.getPaymentInfo().getPaymentMethod() + "\n";
         payStub += "Bank: " + emp.getPaymentInfo().getBankName() + "\n";

@@ -44,10 +44,10 @@ public class ReportingService {
         report += "      DEPARTMENT REPORT: " + department + "\n";
         report += "===========================================\n";
         report += "Total Employees:   " + deptEmployees.size() + "\n";
-        report += "Total Salary Cost: $" + String.format("%.2f", totalSalary) + "\n";
-        report += "Average Salary:    $" + String.format("%.2f", avgSalary) + "\n";
-        report += "Minimum Salary:    $" + String.format("%.2f", minSalary) + "\n";
-        report += "Maximum Salary:    $" + String.format("%.2f", maxSalary) + "\n";
+        report += "Total Salary Cost: $" + "%.2f".formatted(totalSalary) + "\n";
+        report += "Average Salary:    $" + "%.2f".formatted(avgSalary) + "\n";
+        report += "Minimum Salary:    $" + "%.2f".formatted(minSalary) + "\n";
+        report += "Maximum Salary:    $" + "%.2f".formatted(maxSalary) + "\n";
         report += "===========================================\n";
         
         return report;
@@ -61,8 +61,8 @@ public class ReportingService {
         for (Employee emp : employees) {
             String summary = emp.getId() + ": " + 
                            emp.getFullName() + " - " + 
-                           emp.getDepartment() + " - $" + 
-                           String.format("%.0f", emp.getSalary());
+                           emp.getDepartment() + " - $" +
+                "%.0f".formatted(emp.getSalary());
             summaries.add(summary);
         }
         

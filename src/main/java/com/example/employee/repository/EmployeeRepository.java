@@ -135,7 +135,7 @@ public class EmployeeRepository {
         if (sorted.isEmpty()) {
             return null;
         }
-        return sorted.get(0); // Should use getFirst() in Java 21
+        return sorted.getFirst(); // Should use getFirst() in Java 21
     }
     
     public Employee getOldestEmployee() {
@@ -146,7 +146,7 @@ public class EmployeeRepository {
         if (sorted.isEmpty()) {
             return null;
         }
-        return sorted.get(0);
+        return sorted.getFirst();
     }
     
     public List<AuditEvent> getAuditLog() {
