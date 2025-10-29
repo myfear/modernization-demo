@@ -8,6 +8,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.example.employee.EmployeeManagementSystem.SimpleEmployee;
+import com.example.employee.EmployeeManagementSystem.EmployeeUtils;
+
 @DisplayName("Employee Management System Tests")
 class EmployeeManagementSystemTest {
     
@@ -21,7 +24,7 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Should initialize with 5 employees")
     void shouldInitializeWithEmployees() {
-        List<Employee> employees = system.getAllEmployees();
+        List<com.example.employee.model.Employee> employees = system.getAllEmployees();
         assertThat(employees).hasSize(5);
     }
     
@@ -51,7 +54,7 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Should process Employee value correctly")
     void shouldProcessEmployeeValue() {
-        Employee emp = new Employee("E999", "Test User", "IT", 50000);
+        SimpleEmployee emp = new SimpleEmployee("E999", "Test User", "IT", 50000);
         String result = system.processValue(emp);
         assertThat(result).isEqualTo("Employee: Test User");
     }
@@ -111,7 +114,7 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Should filter high earners up to limit")
     void shouldFilterHighEarners() {
-        List<Employee> highEarners = system.getHighEarnersUpToLimit(80000, 2);
+        List<com.example.employee.model.Employee> highEarners = system.getHighEarnersUpToLimit(80000, 2);
         assertThat(highEarners)
             .hasSize(2)
             .allMatch(e -> e.getSalary() >= 80000);
@@ -124,14 +127,14 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Should return empty list when no employees meet criteria")
     void shouldReturnEmptyListWhenNoCriteriaMet() {
-        List<Employee> highEarners = system.getHighEarnersUpToLimit(200000, 5);
+        List<com.example.employee.model.Employee> highEarners = system.getHighEarnersUpToLimit(200000, 5);
         assertThat(highEarners).isEmpty();
     }
     
     @Test
     @DisplayName("Should return random employee from list")
     void shouldReturnRandomEmployee() {
-        Employee random = system.getRandomEmployee();
+        com.example.employee.model.Employee random = system.getRandomEmployee();
         assertThat(random).isNotNull();
         assertThat(system.getAllEmployees()).contains(random);
     }
@@ -139,7 +142,7 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Employee should have correct properties")
     void employeeShouldHaveCorrectProperties() {
-        Employee emp = new Employee("E100", "John Doe", "IT", 60000);
+        SimpleEmployee emp = new SimpleEmployee("E100", "John Doe", "IT", 60000);
         assertThat(emp.getId()).isEqualTo("E100");
         assertThat(emp.getName()).isEqualTo("John Doe");
         assertThat(emp.getDepartment()).isEqualTo("IT");
@@ -149,8 +152,8 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Employees with same data should be equal")
     void employeesShouldBeEqual() {
-        Employee emp1 = new Employee("E100", "John Doe", "IT", 60000);
-        Employee emp2 = new Employee("E100", "John Doe", "IT", 60000);
+        SimpleEmployee emp1 = new SimpleEmployee("E100", "John Doe", "IT", 60000);
+        SimpleEmployee emp2 = new SimpleEmployee("E100", "John Doe", "IT", 60000);
         assertThat(emp1).isEqualTo(emp2);
         assertThat(emp1.hashCode()).isEqualTo(emp2.hashCode());
     }
@@ -158,7 +161,7 @@ class EmployeeManagementSystemTest {
     @Test
     @DisplayName("Employee toString should contain all fields")
     void employeeToStringShouldContainFields() {
-        Employee emp = new Employee("E100", "John Doe", "IT", 60000);
+        SimpleEmployee emp = new SimpleEmployee("E100", "John Doe", "IT", 60000);
         String str = emp.toString();
         assertThat(str)
             .contains("E100")
@@ -175,3 +178,5 @@ class EmployeeManagementSystemTest {
         assertThat(EmployeeUtils.formatSalary(5000.99)).isEqualTo("$5000.99");
     }
 }
+
+// Made with Bob
