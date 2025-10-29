@@ -10,7 +10,7 @@ public class IdGenerator {
     }
     
     public static String generateEmployeeId() {
-        return "E" + "%05d".formatted(random.nextInt(100000));
+        return "E" + String.format("%05d", random.nextInt(100000));
     }
     
     public static String generateEventId() {

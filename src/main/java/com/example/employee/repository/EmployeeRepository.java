@@ -94,7 +94,7 @@ public class EmployeeRepository {
         return new ArrayList<>(employees.values());
     }
     
-    // GOTCHA #12: Using Collectors.toList() instead of toList() (Java 16+)
+    // Using Collectors.toList() for compatibility
     public List<Employee> findByDepartment(String department) {
         return employees.values().stream()
             .filter(e -> e.getDepartment().equals(department))
@@ -135,7 +135,7 @@ public class EmployeeRepository {
         if (sorted.isEmpty()) {
             return null;
         }
-        return sorted.getFirst(); // Should use getFirst() in Java 21
+        return sorted.get(0); // Using get(0) for compatibility
     }
     
     public Employee getOldestEmployee() {
@@ -146,7 +146,7 @@ public class EmployeeRepository {
         if (sorted.isEmpty()) {
             return null;
         }
-        return sorted.getFirst();
+        return sorted.get(0);
     }
     
     public List<AuditEvent> getAuditLog() {
