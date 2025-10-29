@@ -1,0 +1,40 @@
+flowchart TD
+    classDef java8 fill:#2a0a18,stroke:#ee5396,stroke-width:2px
+    classDef java21 fill:#081a1c,stroke:#009d9a,stroke-width:2px
+    classDef process fill:#001141,stroke:#4589ff,stroke-width:2px,text-align:left
+    classDef file stroke-width:2px
+
+    start["Java 8 to Java 21 Modernization"] --> analysis["Static Code Analysis"]
+    analysis --> issues["Identified Compatibility Issues"]
+
+    issues --> stringFormatted["String.formatted() Method<br>(Java 15+ Feature)"]:::java8
+    issues --> instanceofPattern["Pattern Matching in instanceof<br>(Java 16+ Feature)"]:::java8
+    issues --> listGetFirst["List.getFirst() Method<br>(Java 21 Feature)"]:::java8
+    issues --> streamToList["Stream.toList() Method<br>(Java 16+ Feature)"]:::java8
+
+    stringFormatted --> fixStringFormatted["<b>Fix String.formatted()</b><br>Replace with String.format()"]:::process
+    instanceofPattern --> fixInstanceof["<b>Fix Pattern Matching</b><br>Replace with traditional casting"]:::process
+    listGetFirst --> fixListGetFirst["<b>Fix List.getFirst()</b><br>Replace with list.get(0)"]:::process
+    streamToList --> fixStreamToList["<b>Fix Stream.toList()</b><br>Replace with collect(Collectors.toList())"]:::process
+
+    fixStringFormatted --> resultStringFormat["Compatible String Formatting"]:::java21
+    fixInstanceof --> resultInstanceof["Compatible Type Checking"]:::java21
+    fixListGetFirst --> resultListAccess["Compatible List Access"]:::java21
+    fixStreamToList --> resultStreamCollect["Compatible Stream Collection"]:::java21
+
+    resultStringFormat --> final["Java 21 Compatible Code<br>with Java 8 Compatibility"]
+    resultInstanceof --> final
+    resultListAccess --> final
+    resultStreamCollect --> final
+
+    subgraph tasks[Tasks]
+        task0["<b>Task 0: Initial Compatibility Fixes</b><br>• Description: Fixed String.formatted(), instanceof pattern matching,<br>  List.getFirst(), and locale-specific decimal formatting<br>• Cost: 0.20 coins<br>• Total Tokens Used: 228,454<br>• Execution Time: 123.3s"]:::process
+        
+        task1["<b>Task 1: Comprehensive Migration</b><br>• Description: Fixed String.formatted() in IdGenerator.java,<br>  List.getFirst() in EmployeeRepository.java, and<br>  Stream.toList() in EmployeeRepository.java<br>• Cost: 0.22 coins<br>• Total Tokens Used: 288,197<br>• Execution Time: 149.9s"]:::process
+    end
+
+    subgraph legend[Legend]
+        java8Example["Java 8 Code"]:::java8
+        processExample["Modernization Step"]:::process
+        java21Example["Java 21 Code"]:::java21
+    end
