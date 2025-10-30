@@ -1,1 +1,5 @@
-{}
+{
+    "java.configuration.updateBuildConfiguration": "disabled",
+    "workbench.statusBar.visible": false,
+    "workbench.editor.editorActionsLocation": "titleBar"
+}
