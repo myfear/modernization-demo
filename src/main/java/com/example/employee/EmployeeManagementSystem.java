@@ -70,12 +70,12 @@ public class EmployeeManagementSystem {
     }
 
     public String processValue(Object value) {
-        if (value instanceof String) {
-            return "String: " + ((String) value).toUpperCase();
-        } else if (value instanceof Integer) {
-            return "Number: " + ((Integer) value * 2);
-        } else if (value instanceof SimpleEmployee) {
-            return "Employee: " + ((SimpleEmployee) value).getName();
+        if (value instanceof String string) {
+            return "String: " + string.toUpperCase();
+        } else if (value instanceof Integer integer) {
+            return "Number: " + (integer * 2);
+        } else if (value instanceof SimpleEmployee employee) {
+            return "Employee: " + employee.getName();
         } else {
             return "Unknown type";
         }
@@ -96,11 +96,11 @@ public class EmployeeManagementSystem {
         report.append("Total Employees: ").append(repository.findAll().size()).append("\n");
         report.append("Departments: Engineering, Sales, HR\n");
         report.append("Average Salary: $").append(
-                String.format("%.2f",
+                    "%.2f".formatted(
                         repository.findAll().stream()
-                                .mapToDouble(Employee::getSalary)
-                                .average()
-                                .orElse(0.0)))
+                            .mapToDouble(Employee::getSalary)
+                            .average()
+                            .orElse(0.0)))
                 .append("\n");
         report.append("======================");
         return report.toString();
@@ -109,7 +109,7 @@ public class EmployeeManagementSystem {
     public String generateEmailTemplate(String name, double amount) {
         return "Dear " + name + ",\n\n" +
                 "We are pleased to inform you that your bonus of $" +
-                String.format("%.2f", amount) +
+            "%.2f".formatted(amount) +
                 " has been approved.\n\n" +
                 "Regards,\n" +
                 "HR Department";
@@ -204,7 +204,7 @@ public class EmployeeManagementSystem {
      */
     public static class EmployeeUtils {
         public static String formatSalary(double salary) {
-            return "$" + String.format("%.2f", salary);
+            return "$" + "%.2f".formatted(salary);
         }
     }
 }

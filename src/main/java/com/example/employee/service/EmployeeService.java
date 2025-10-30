@@ -19,14 +19,11 @@ public class EmployeeService {
     
     // GOTCHA #14: Complex instanceof checks without pattern matching (Java 16+)
     public String processEmployeeData(Object data) {
-        if (data instanceof Employee) {
-            Employee emp = (Employee) data;
+        if (data instanceof Employee emp) {
             return "Employee: " + emp.getFullName() + " (" + emp.getDepartment() + ")";
-        } else if (data instanceof PerformanceReview) {
-            PerformanceReview review = (PerformanceReview) data;
+        } else if (data instanceof PerformanceReview review) {
             return "Review for " + review.getEmployeeId() + ": Rating " + review.getRating();
-        } else if (data instanceof String) {
-            String str = (String) data;
+        } else if (data instanceof String str) {
             if (str.startsWith("E")) {
                 try {
                     Employee emp = repository.findById(str);
@@ -36,11 +33,9 @@ public class EmployeeService {
                 }
             }
             return "String data: " + str;
-        } else if (data instanceof List) {
-            List<?> list = (List<?>) data;
+        } else if (data instanceof List<?> list) {
             return "List with " + list.size() + " items";
-        } else if (data instanceof Map) {
-            Map<?, ?> map = (Map<?, ?>) data;
+        } else if (data instanceof Map<?, ?> map) {
             return "Map with " + map.size() + " entries";
         } else {
             return "Unknown data type: " + (data != null ? data.getClass().getSimpleName() : "null");

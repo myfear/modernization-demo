@@ -60,8 +60,8 @@ public class EmployeeManagementApp {
         System.out.println("\nDemo 5: Top 3 Performers");
         List<Employee> topPerformers = employeeService.getTopPerformers(3);
         for (Employee emp : topPerformers) {
-            System.out.println("  " + emp.getFullName() + ": $" + 
-                             String.format("%.0f", emp.getSalary()));
+            System.out.println("  " + emp.getFullName() + ": $" +
+                "%.0f".formatted(emp.getSalary()));
         }
         
         // Demo 6: Nested null checks gotcha
