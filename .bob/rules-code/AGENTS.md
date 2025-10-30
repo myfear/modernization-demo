@@ -1,0 +1,1 @@
+- Always use  `source "$HOME/.sdkman/bin/sdkman-init.sh"` before running any SDKMAN commands, example: `source "$HOME/.sdkman/bin/sdkman-init.sh" && sdk current java`
